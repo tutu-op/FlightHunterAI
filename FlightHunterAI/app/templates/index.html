@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>FlightHunterAI</title>
+
+<link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>✈ FlightHunterAI</h1>
+
+<p class="subtitulo">
+
+Encuentra el mejor precio entre múltiples proveedores
+
+</p>
+
+<form id="busqueda">
+
+<input
+id="origen"
+placeholder="Origen (GDL)"
+required
+>
+
+<input
+id="destino"
+placeholder="Destino (NRT)"
+required
+>
+
+<input
+type="date"
+id="fecha_salida"
+required
+>
+
+<input
+type="date"
+id="fecha_regreso"
+>
+
+<input
+type="number"
+id="adultos"
+value="1"
+min="1"
+>
+
+<button>
+
+🔍 Buscar vuelos
+
+</button>
+
+</form>
+
+<div id="resultados"></div>
+
+<script src="/static/js/app.js"></script>
+
+</div>
+
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 from app.providers.manager import ProviderManager
 from app.services.comparador import Comparador
+import traceback
 
 
 class BuscadorVuelos:
@@ -20,20 +21,26 @@ class BuscadorVuelos:
 
         for provider in self.manager.obtener_providers():
 
+            print(f"\n========== Consultando {provider.__class__.__name__} ==========")
+
             try:
 
-                vuelos.extend(
-                    provider.buscar(
-                        origen,
-                        destino,
-                        fecha_salida,
-                        fecha_regreso,
-                        adultos
-                    )
+                resultado = provider.buscar(
+                    origen,
+                    destino,
+                    fecha_salida,
+                    fecha_regreso,
+                    adultos
                 )
 
-            except Exception as e:
-                print(f"Error en {provider.__class__.__name__}: {e}")
+                print(f"{provider.__class__.__name__} devolvió {len(resultado)} vuelos")
+
+                vuelos.extend(resultado)
+
+            except Exception:
+
+                print(f"Error en {provider.__class__.__name__}")
+                traceback.print_exc()
 
         vuelos = Comparador.eliminar_duplicados(vuelos)
         vuelos = Comparador.ordenar_por_precio(vuelos)

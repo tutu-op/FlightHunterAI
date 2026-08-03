@@ -1,28 +1,29 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
 from app.services.buscador import BuscadorVuelos
 
 app = FastAPI(
     title="FlightHunter AI",
-    description="Buscador inteligente de vuelos",
-    version="1.0.0"
+    version="2.0"
 )
+
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+templates = Jinja2Templates(directory="app/templates")
 
 buscador = BuscadorVuelos()
 
 
-@app.get("/")
-def inicio():
-    return {
-        "mensaje": "Bienvenido a FlightHunter AI",
-        "estado": "Activo"
-    }
+@app.get("/", response_class=HTMLResponse)
+def inicio(request: Request):
 
-
-@app.get("/health")
-def health():
-    return {
-        "status": "OK"
-    }
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html"
+    )
 
 
 @app.get("/vuelos")
@@ -33,6 +34,7 @@ def buscar(
     fecha_regreso: str | None = None,
     adultos: int = 1
 ):
+
     return buscador.buscar(
         origen,
         destino,

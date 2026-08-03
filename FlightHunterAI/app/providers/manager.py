@@ -1,4 +1,5 @@
 from app.providers.mock import MockProvider
+from app.providers.duffel import DuffelProvider
 
 
 class ProviderManager:
@@ -7,7 +8,9 @@ class ProviderManager:
 
         self.providers = [
 
-            MockProvider()
+            MockProvider(),
+
+            DuffelProvider()
 
         ]
 
