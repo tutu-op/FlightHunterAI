@@ -11,10 +11,8 @@ A personal project built end to end: from setting up the environment to creating
 <!-- Add your screenshots here -->
 
 | Flight search | Results with FlightHunter Score |
-|---|---|
-| <img width="901" height="476" alt="image" src="https://github.com/user-attachments/assets/f634668a-f5b5-4b8d-b986-76d8e065ff00" />
- | <img width="888" height="454" alt="image" src="https://github.com/user-attachments/assets/c2c1bdd0-e2b7-4937-9204-ceb97387e2de" />
- |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/f634668a-f5b5-4b8d-b986-76d8e065ff00" alt="Flight search" width="100%" /> | <img src="https://github.com/user-attachments/assets/c2c1bdd0-e2b7-4937-9204-ceb97387e2de" alt="Results with FlightHunter Score" width="100%" /> |
 
 
 
