@@ -3,71 +3,161 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FlightHunterAI</title>
+    <title>FlightHunterAI</title>
 
-<link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 
 </head>
 
 <body>
 
-<div class="contenedor">
+<div class="hero">
 
-<h1>✈ FlightHunterAI</h1>
+    <div class="overlay"></div>
 
-<p class="subtitulo">
+    <div class="contenedor">
 
-Encuentra el mejor precio entre múltiples proveedores
+        <header class="header">
 
-</p>
+            <h1>✈ FlightHunterAI</h1>
 
-<form id="busqueda">
+            <p>
+                Encuentra el mejor vuelo usando inteligencia artificial.
+            </p>
 
-<input
-id="origen"
-placeholder="Origen (GDL)"
-required
->
+            <div class="stats">
 
-<input
-id="destino"
-placeholder="Destino (NRT)"
-required
->
+                <div class="stat">
+                    🌎
+                    <span>200+ Aerolíneas</span>
+                </div>
 
-<input
-type="date"
-id="fecha_salida"
-required
->
+                <div class="stat">
+                    🤖
+                    <span>Comparación Inteligente</span>
+                </div>
 
-<input
-type="date"
-id="fecha_regreso"
->
+                <div class="stat">
+                    ⚡
+                    <span>Resultados en segundos</span>
+                </div>
 
-<input
-type="number"
-id="adultos"
-value="1"
-min="1"
->
+            </div>
 
-<button>
+        </header>
 
-🔍 Buscar vuelos
 
-</button>
+        <section class="buscador">
 
-</form>
+            <form id="busqueda">
 
-<div id="resultados"></div>
+                <div class="campo">
 
-<script src="/static/js/app.js"></script>
+                    <label>Origen</label>
+
+                    <input
+                        id="origen"
+                        placeholder="Guadalajara o GDL"
+                        required
+                        autocomplete="off">
+
+                    <div id="sugerenciasOrigen" class="sugerencias"></div>
+
+                </div>
+
+                <div class="campo">
+
+                    <label>Destino</label>
+
+                    <input
+                        id="destino"
+                        placeholder="Tokio o NRT"
+                        required
+                        autocomplete="off">
+
+                    <div id="sugerenciasDestino" class="sugerencias"></div>
+
+                </div>
+
+                <div class="fila">
+
+                    <div class="campo">
+
+                        <label>Salida</label>
+
+                        <input
+                            type="date"
+                            id="fecha_salida"
+                            required>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>Regreso</label>
+
+                        <input
+                            type="date"
+                            id="fecha_regreso">
+
+                    </div>
+
+                    <div class="campo pequeno">
+
+                        <label>Pasajeros</label>
+
+                        <input
+                            type="number"
+                            id="adultos"
+                            value="1"
+                            min="1">
+
+                    </div>
+
+                </div>
+
+                <button class="btn-buscar">
+
+                    🔍 Buscar mejores vuelos
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <section id="panelIA" class="panel-ia oculto">
+
+            <div class="ia-icono">
+
+                🤖
+
+            </div>
+
+            <div>
+
+                <h2>FlightHunterAI está analizando cientos de vuelos...</h2>
+
+                <p id="estadoIA">
+
+                    Comparando precios entre proveedores.
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <section id="resultados"></section>
+
+    </div>
 
 </div>
+
+<script src="/static/js/app.js"></script>
 
 </body>
 

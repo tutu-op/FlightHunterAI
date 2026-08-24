@@ -25,4 +25,16 @@ class Vuelo(BaseModel):
 
     escalas: int
 
+    duracion: str | None = None
+
     enlace: str | None = None
+
+    codigo_aerolinea: str | None = None
+
+    offer_id: str | None = None
+
+    score: int | None = None
+
+    razones: list[str] = []
+
+    

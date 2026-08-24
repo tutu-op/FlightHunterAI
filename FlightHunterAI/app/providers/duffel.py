@@ -3,6 +3,7 @@ import httpx
 from app.providers.provider import Provider
 from app.models.vuelo import Vuelo
 from app.config import DUFFEL_API_KEY
+from app.services.duracion import calcular_duracion
 
 
 class DuffelProvider(Provider):
@@ -62,8 +63,10 @@ class DuffelProvider(Provider):
             ofertas = datos.get("data", {}).get("offers", [])
 
             print(f"Se recibieron {len(ofertas)} ofertas.")
+            
 
             for oferta in ofertas:
+               
 
                 try:
 
@@ -98,7 +101,17 @@ class DuffelProvider(Provider):
 
                             escalas=len(segmentos) - 1,
 
-                            enlace=None
+                            enlace=None,
+
+                            offer_id=oferta["id"],
+
+                            codigo_aerolinea=oferta["owner"]["iata_code"],
+
+                            duracion=calcular_duracion(
+                                primer_segmento["departing_at"],
+                                ultimo_segmento["arriving_at"]
+                            ),
+                            
 
                         )
 

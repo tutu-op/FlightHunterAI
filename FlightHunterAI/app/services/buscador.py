@@ -1,7 +1,8 @@
 from app.providers.manager import ProviderManager
 from app.services.comparador import Comparador
-import traceback
-
+from app.services.iata import obtener_codigo
+from app.services.evaluador import Evaluador
+from app.services.scoring import FlightHunterScore
 
 class BuscadorVuelos:
 
@@ -16,6 +17,13 @@ class BuscadorVuelos:
         fecha_regreso=None,
         adultos=1
     ):
+
+        # Convertir ciudad -> código IATA
+        origen = obtener_codigo(origen)
+        destino = obtener_codigo(destino)
+
+        print(f"Origen convertido: {origen}")
+        print(f"Destino convertido: {destino}")
 
         vuelos = []
 
@@ -37,12 +45,21 @@ class BuscadorVuelos:
 
                 vuelos.extend(resultado)
 
-            except Exception:
+            except Exception as e:
+                print(f"Error en {provider.__class__.__name__}: {e}")
 
-                print(f"Error en {provider.__class__.__name__}")
-                traceback.print_exc()
-
+        # Eliminar vuelos duplicados
         vuelos = Comparador.eliminar_duplicados(vuelos)
-        vuelos = Comparador.ordenar_por_precio(vuelos)
+
+        # Evaluar los vuelos
+        vuelos = Evaluador.evaluar(vuelos)
+
+        # Calcular FlightHunter Score
+        vuelos = [FlightHunterScore.calcular(v) for v in vuelos]
+
+        # Ordenar por Score (descendente) y luego por precio (ascendente)
+        vuelos.sort(
+            key=lambda v: (-v.score, v.precio)
+        )
 
         return vuelos

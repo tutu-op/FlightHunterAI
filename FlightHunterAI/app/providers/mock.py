@@ -18,6 +18,7 @@ class MockProvider(Provider):
             Vuelo(
                 proveedor="Mock",
                 aerolinea="ANA",
+                codigo_aerolinea="NH",
                 origen=origen,
                 destino=destino,
                 fecha_salida=fecha_salida,
@@ -33,6 +34,7 @@ class MockProvider(Provider):
             Vuelo(
                 proveedor="Mock",
                 aerolinea="Delta",
+                codigo_aerolinea="DL",
                 origen=origen,
                 destino=destino,
                 fecha_salida=fecha_salida,
@@ -48,6 +50,7 @@ class MockProvider(Provider):
             Vuelo(
                 proveedor="Mock",
                 aerolinea="United",
+                codigo_aerolinea="UA",
                 origen=origen,
                 destino=destino,
                 fecha_salida=fecha_salida,
